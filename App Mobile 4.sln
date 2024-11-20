@@ -1,0 +1,27 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35327.3
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "App Mobile 4", "App Mobile 4\App Mobile 4.csproj", "{DFC1EBCE-8963-4AFA-A025-39B7E093E44F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DFC1EBCE-8963-4AFA-A025-39B7E093E44F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DFC1EBCE-8963-4AFA-A025-39B7E093E44F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DFC1EBCE-8963-4AFA-A025-39B7E093E44F}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{DFC1EBCE-8963-4AFA-A025-39B7E093E44F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DFC1EBCE-8963-4AFA-A025-39B7E093E44F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DFC1EBCE-8963-4AFA-A025-39B7E093E44F}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CB65BE71-29C3-4AB0-BBF1-1E2BCCE293C8}
+	EndGlobalSection
+EndGlobal
