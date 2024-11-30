@@ -1,159 +1,148 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-
-<!--Biblioteca de Animação: Substituímos o uso da biblioteca Lottie por Rive,
-   que é outra biblioteca popular para animações interativas.-->
-
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:rive="clr-namespace:Rive.Maui;assembly=Rive.Maui"                                  
              x:Class="App_Mobile_4.MainPage"
-             BackgroundColor="#D0D9E6">
+             BackgroundColor="#EAEAEA">
 
-    <ScrollView Padding="20">
-        <VerticalStackLayout Spacing="25" VerticalOptions="FillAndExpand">
+    <ScrollView>
+        <VerticalStackLayout Padding="30" Spacing="25">
 
-            <!-- Entradas de IP e Porta -->
-            <StackLayout Orientation="Vertical" Spacing="15" WidthRequest="300">
+            <!-- Título -->
+            <Frame BackgroundColor="#4CAF50" CornerRadius="15" Padding="10" HorizontalOptions="Center">
+                <Label Text="Controle de Lâmpadas"
+                       FontSize="22"
+                       FontAttributes="Bold"
+                       TextColor="White"
+                       HorizontalTextAlignment="Center" />
+            </Frame>
 
+            <!-- Endereço IP -->
+            <Label Text="Endereço IP do Arduino"
+                   FontSize="14"
+                   TextColor="#555555" />
+            <Frame BackgroundColor="White" CornerRadius="10">
                 <Entry 
-                    x:Name="IpEntry"
-                    Placeholder="IP do servidor"
-                    Keyboard="Numeric"
-                    BackgroundColor="#1B2A41"
-                    TextColor="White"
+                    x:Name="IpTxt"
+                    Placeholder="Digite o IP"
                     FontSize="16"
-                    HeightRequest="50"                   
-                    Margin="0,10" />
+                    TextColor="#333333"
+                    Margin="10,5" />
+            </Frame>
 
+            <!-- Porta -->
+            <Label Text="Porta de Comunicação"
+                   FontSize="14"
+                   TextColor="#555555" />
+            <Frame BackgroundColor="White" CornerRadius="10">
                 <Entry 
-                    x:Name="PortEntry"
-                    Placeholder="Porta do servidor"
-                    Keyboard="Numeric"
-                    BackgroundColor="#1B2A41"
-                    TextColor="White"
+                    x:Name="PortTxt"
+                    Placeholder="Digite a Porta"
                     FontSize="16"
-                    HeightRequest="50"
-                    Margin="0,10" />
+                    TextColor="#333333"
+                    Margin="10,5" />
+            </Frame>
 
-            </StackLayout>
-
-            <!-- Botões de conexão -->
-            <StackLayout Orientation="Horizontal" Spacing="20" HorizontalOptions="Center" Padding="20">
-
+            <!-- Botões de Conexão -->
+            <HorizontalStackLayout HorizontalOptions="Center" Spacing="15">
                 <Button 
+                    x:Name="btnConeted"
                     Text="Conectar"
-                    BackgroundColor="#27AE60"
+                    BackgroundColor="#4CAF50"
                     TextColor="White"
-                    FontSize="16"
-                    WidthRequest="120"
-                    HeightRequest="50"
-                    CornerRadius="25"
+                    WidthRequest="140"
+                    HeightRequest="45"
+                    CornerRadius="22" 
                     Clicked="OnConnectClicked" />
-
                 <Button 
+                    x:Name="btnDesconeted"
                     Text="Desconectar"
-                    BackgroundColor="#E74C3C"
+                    BackgroundColor="#F44336"
                     TextColor="White"
-                    FontSize="16"
-                    WidthRequest="120"
-                    HeightRequest="50"
-                    CornerRadius="25"
-                    Clicked="OnDisconnectClicked" />
+                    WidthRequest="140"
+                    HeightRequest="45"
+                    CornerRadius="22"
+                    Clicked="OnDisconnectClicked"
+                    IsVisible="False" />
+            </HorizontalStackLayout>
 
-            </StackLayout>
+            <!-- Controle de Lâmpadas -->
+            <Grid RowSpacing="15" ColumnSpacing="15">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
 
-            <!-- Controle de lâmpadas -->
-            <Grid ColumnDefinitions="*,*" RowDefinitions="*,*" IsVisible="True">
-                <Button 
-                    Text="Lâmpada 1"
-                    BackgroundColor="#2980B9"
-                    TextColor="White"
-                    FontSize="16"
-                    Clicked="OnLampControlClicked"
-                    CommandParameter="1"
-                    CornerRadius="20"
-                    WidthRequest="190"
-                    Margin="10"
-                    Grid.Row="0" Grid.Column="0"
-                    HorizontalOptions="FillAndExpand"
-                    VerticalOptions="FillAndExpand" />
-
-                <Button 
-                    Text="Lâmpada 2"
-                    BackgroundColor="#2980B9"
-                    TextColor="White"
-                    FontSize="16"
-                    Clicked="OnLampControlClicked"
-                    CommandParameter="2"
-                    CornerRadius="20"
-                    WidthRequest="190"
-                    Margin="10"
-                    Grid.Row="0" Grid.Column="1"
-                    HorizontalOptions="FillAndExpand"
-                    VerticalOptions="FillAndExpand" />
-
-                <Button 
-                    Text="Lâmpada 3"
-                    BackgroundColor="#2980B9"
-                    TextColor="White"
-                    FontSize="16"
-                    Clicked="OnLampControlClicked"
-                    CornerRadius="20"
-                    WidthRequest="190"
-                    Margin="10"
-                    CommandParameter="3"
-                    Grid.Row="1" Grid.Column="0"
-                    HorizontalOptions="FillAndExpand"
-                    VerticalOptions="FillAndExpand" />
-
-                <Button 
-                    Text="Lâmpada 4"
-                    BackgroundColor="#2980B9"
-                    TextColor="White"
-                    FontSize="16"
-                    Clicked="OnLampControlClicked"
-                    CornerRadius="20"
-                    WidthRequest="190"
-                    Margin="10"
-                    CommandParameter="4"
-                    Grid.Row="1" Grid.Column="1"
-                    HorizontalOptions="FillAndExpand"
-                    VerticalOptions="FillAndExpand" />
+                <Button Text="Lâmpada 1"
+                        BackgroundColor="#2196F3"
+                        TextColor="White"
+                        CornerRadius="15"
+                        FontSize="16"
+                        Grid.Row="0" Grid.Column="0"
+                        Clicked="LampClicked" 
+                        CommandParameter="1" 
+                        x:Name="Lamp1Btn"/>
+                <Button Text="Lâmpada 2"
+                        BackgroundColor="#2196F3"
+                        TextColor="White"
+                        CornerRadius="15"
+                        FontSize="16"
+                        Grid.Row="0" Grid.Column="1" 
+                        Clicked="LampClicked" 
+                        CommandParameter="2" 
+                        x:Name="Lamp2Btn"/>
+                <Button Text="Lâmpada 3"
+                        BackgroundColor="#2196F3"
+                        TextColor="White"
+                        CornerRadius="15"
+                        FontSize="16"
+                        Grid.Row="1" Grid.Column="0" 
+                        Clicked="LampClicked" 
+                        CommandParameter="3" 
+                        x:Name="Lamp3Btn"/>
+                <Button Text="Lâmpada 4"
+                        BackgroundColor="#2196F3"
+                        TextColor="White"
+                        CornerRadius="15"
+                        FontSize="16"
+                        Grid.Row="1" Grid.Column="1" 
+                        Clicked="LampClicked" 
+                        CommandParameter="4" 
+                        x:Name="Lamp4Btn"/>
             </Grid>
 
-            <!-- Tabela de estados das lâmpadas -->
-            <TableView HasUnevenRows="True" Margin="0,30,0,0">
+            <!-- Registros -->
+            <Label Text="Registros de Lâmpadas"
+                   FontAttributes="Bold"
+                   FontSize="16"
+                   TextColor="#4CAF50"
+                   HorizontalOptions="Center" />
+
+            <TableView x:Name="LampStateTable">
                 <TableRoot>
-                    <TableSection TextColor="Purple" Title="Estado das Lâmpadas">
-                        <ViewCell Tapped="OnLampTapped">
-                            <StackLayout>
-                                <Label Text="Lâmpada 1" TextColor="Purple"/>
-                                <Label Text="Desconectada" TextColor="Black"/>
-                            </StackLayout>
-                        </ViewCell>
-                        <ViewCell Tapped="OnLampTapped">
-                            <StackLayout>
-                                <Label Text="Lâmpada 2" TextColor="Purple"/>
-                                <Label Text="Desconectada" TextColor="Black"/>
-                            </StackLayout>
-                        </ViewCell>
-                        <ViewCell Tapped="OnLampTapped">
-                            <StackLayout>
-                                <Label Text="Lâmpada 3" TextColor="Purple"/>
-                                <Label Text="Desconectada" TextColor="Black"/>
-                            </StackLayout>
-                        </ViewCell>
-                        <ViewCell Tapped="OnLampTapped">
-                            <StackLayout>
-                                <Label Text="Lâmpada 4" TextColor="Purple"/>
-                                <Label Text="Desconectada" TextColor="Black"/>
-                            </StackLayout>
-                        </ViewCell>
+                    <TableSection Title="Estado das Lâmpadas" x:Name="LampTableSection">
+                        <TextCell 
+                            x:Name="Lamp1Status" 
+                            Text="Lâmpada 1" 
+                            Detail="Desconectado" DetailColor="#333333"/>
+                        <TextCell 
+                            x:Name="Lamp2Status" 
+                            Text="Lâmpada 2" 
+                            Detail="Desconectado" DetailColor="#333333"/>
+                        <TextCell 
+                            x:Name="Lamp3Status" 
+                            Text="Lâmpada 3" 
+                            Detail="Desconectado" DetailColor="#333333"/>
+                        <TextCell 
+                            x:Name="Lamp4Status" 
+                            Text="Lâmpada 4" 
+                            Detail="Desconectado" DetailColor="#333333"/>
                     </TableSection>
                 </TableRoot>
             </TableView>
-
-
 
         </VerticalStackLayout>
     </ScrollView>
